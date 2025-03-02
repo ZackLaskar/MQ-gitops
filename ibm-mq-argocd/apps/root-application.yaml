@@ -1,17 +1,18 @@
+# apps/root-application.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: queue-manager
+  name: root-application
   namespace: argocd
 spec:
-  project: ibm-mq
+  project: default
   source:
-    repoURL: https://github.com/ZackLaskar/MQ-gitops.git
-    path: manifests/queue-manager
+    repoURL: https://github.com/https://github.com/ZackLaskar/MQ-gitops.git
+    path: ibm-mq-argocd/apps
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: ibm-mq
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true

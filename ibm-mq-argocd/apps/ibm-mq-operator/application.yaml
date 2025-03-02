@@ -4,7 +4,7 @@ metadata:
   name: ibm-mq-operator
   namespace: argocd
 spec:
-  project: default
+  project: ibm-mq
   source:
     repoURL: https://github.com/ZackLaskar/MQ-gitops.git
     path: manifests/ibm-mq-operator
