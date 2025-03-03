@@ -1,0 +1,10 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  queueManager:
+    metrics:
+      enabled: false
+    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-metrics:9.3.5.0-r2
+    

@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: mq-metrics-pipeline-run-01
+spec:
+  params:
+    - name: mqVersion
+      value: 9.3.5.0-r2
+    - name: mqSrcImage
+      value: icr.io/ibm-messaging/mq
+    - name: targetRegistry
+      value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)
+  pipelineRef:
+    name: build-mq-with-metrics
+  serviceAccountName: pipeline        
+  workspaces:
+    - name: mq-metrics-workspace
+      persistentVolumeClaim:
+        claimName: mq-metrics-workspace-pvc
+    - name: mq-metrics-dockerconfig
+      secret:
+        secretName: internal-registry-creds
+
